@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>pdlex-settings</string>
+	<key>scope</key>
+	<string>markup.heading.3.pdlex</string>
+	<key>settings</key>
+	<dict>
+		<key>showInSymbolList</key>
+		<integer>1</integer>
+		<key>smartTypingPairs</key>
+		<array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+		</array>
+		<key>symbolTransformation</key>
+		<string>s/%//</string>
+	</dict>
+	<key>uuid</key>
+	<string>C9211A8C-3F12-4621-9462-18C5719D5DFA</string>
+</dict>
+</plist>

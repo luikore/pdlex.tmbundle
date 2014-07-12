@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string></string>
+	<key>contactName</key>
+	<string>z</string>
+	<key>description</key>
+	<string>https://github.com/luikore/pdlex</string>
+	<key>name</key>
+	<string>pdlex</string>
+	<key>uuid</key>
+	<string>7FA85899-E2E9-4D46-B2EC-28DBE879DC4E</string>
+</dict>
+</plist>
