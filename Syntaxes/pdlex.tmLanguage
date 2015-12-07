@@ -4,44 +4,176 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string>pdl</string>
+		<string>sb</string>
 	</array>
 	<key>name</key>
-	<string>pdlex</string>
+	<string>spellbreak</string>
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>(lex) +(\*?\w+) *= *\[</string>
+			<key>beginCaptures</key>
 			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>define.lex</string>
+				</dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>string.regexp</string>
+					<string>keyword</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>variable</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>string</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#escape</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#interpolate</string>
-						</dict>
-					</array>
+					<string>support.class</string>
 				</dict>
 			</dict>
-			<key>match</key>
-			<string>^(%(?:alias|var\[\]|var))\ +(\$?\w+)(.*)</string>
+			<key>end</key>
+			<string>\]</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#begin_block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#regexp</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#invoke_context</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ref_pattern</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_action</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_error</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(peg) +(\w+) *= *\[</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>define.peg</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.class</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\]</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#non_term_rule</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#term_rule</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ref_operator_table</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#peg_ops</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_action</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_error</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(cfg) +(\w+) += +\[</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>define.cfg</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.class</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\]</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#non_term_rule</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#term_rule</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#cfg_ops</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_action</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#rule_error</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -49,74 +181,151 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>string.regexp</string>
+					<string>keyword</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>constant</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>string</string>
+					<string>constant.number</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(%include)\ +(?:(nil)|(".*"))</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>string.regexp</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>constant</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>comment</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^(%a?context) (.*)(#.*)?\n</string>
+			<string>(pattern) +(@\w+)</string>
 			<key>name</key>
-			<string>markup.heading.3.pdlex</string>
+			<string>define.pattern</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#define_var</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(pattern|var|lex|peg|cfg|begin|end)\b</string>
+			<key>name</key>
+			<string>keyword</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#number_or_var</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#comment</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#string</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#regexp</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#outside_ops</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#rule_error</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>begin_block</key>
+		<dict>
+			<key>begin</key>
+			<string>(begin|end) *((/.*?/)|(".*?")|) *\{</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>string.regexp</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[A-Z]\w*</string>
+					<key>name</key>
+					<string>support.class</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#const_lit</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[a-z]\w*</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#number_or_var</string>
+				</dict>
+			</array>
+		</dict>
+		<key>cfg_ops</key>
+		<dict>
+			<key>match</key>
+			<string>:|;|\|</string>
+			<key>name</key>
+			<string>keyword</string>
+		</dict>
+		<key>comment</key>
 		<dict>
 			<key>match</key>
 			<string>#.*</string>
 			<key>name</key>
 			<string>comment</string>
 		</dict>
+		<key>const_lit</key>
 		<dict>
-			<key>begin</key>
-			<string>^(?![\n\r%])</string>
-			<key>end</key>
-			<string>\s</string>
+			<key>match</key>
+			<string>(true|false|nil|-?\d+)\b</string>
 			<key>name</key>
-			<string>string</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#escape</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#interpolate</string>
-				</dict>
-			</array>
+			<string>constant</string>
 		</dict>
-	</array>
-	<key>repository</key>
-	<dict>
+		<key>define_var</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.number</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(var(?:\[\]|\&lt;\&gt;)?) +(\$?\w+)</string>
+			<key>name</key>
+			<string>define.var</string>
+		</dict>
 		<key>escape</key>
 		<dict>
 			<key>match</key>
@@ -144,9 +353,152 @@
 			<key>name</key>
 			<string>variable</string>
 		</dict>
+		<key>invoke_context</key>
+		<dict>
+			<key>match</key>
+			<string>\*?[A-Z]\w*</string>
+			<key>name</key>
+			<string>support.class</string>
+		</dict>
+		<key>non_term_rule</key>
+		<dict>
+			<key>match</key>
+			<string>[A-Z]\w*(\.\w+)*</string>
+			<key>name</key>
+			<string>support.class</string>
+		</dict>
+		<key>number_or_var</key>
+		<dict>
+			<key>match</key>
+			<string>\$\w+|\$-?\d+|\$\$</string>
+			<key>name</key>
+			<string>constant.number</string>
+		</dict>
+		<key>outside_ops</key>
+		<dict>
+			<key>match</key>
+			<string>=|;</string>
+		</dict>
+		<key>peg_ops</key>
+		<dict>
+			<key>match</key>
+			<string>:|;|/|\+|\*|\?|&amp;|\^|!|[&gt;&lt;][\?\+\*]</string>
+			<key>name</key>
+			<string>keyword</string>
+		</dict>
+		<key>ref_operator_table</key>
+		<dict>
+			<key>match</key>
+			<string>/\$\w+</string>
+			<key>name</key>
+			<string>constant.number</string>
+		</dict>
+		<key>ref_pattern</key>
+		<dict>
+			<key>match</key>
+			<string>@\w+</string>
+			<key>name</key>
+			<string>constant.number</string>
+		</dict>
+		<key>regexp</key>
+		<dict>
+			<key>begin</key>
+			<string>/</string>
+			<key>end</key>
+			<string>/</string>
+			<key>name</key>
+			<string>string.regexp</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#escape</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#interpolate</string>
+				</dict>
+			</array>
+		</dict>
+		<key>rule_action</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>end</key>
+			<string>\}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>:[A-Za-z]\w*</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[A-Z]\w*</string>
+					<key>name</key>
+					<string>support.class</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>if\b|else\b|end\b</string>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#const_lit</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[a-z]\w*</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#number_or_var</string>
+				</dict>
+			</array>
+		</dict>
+		<key>rule_error</key>
+		<dict>
+			<key>match</key>
+			<string>[^ \n]</string>
+			<key>name</key>
+			<string>invalid.illegal</string>
+		</dict>
+		<key>string</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#escape</string>
+				</dict>
+			</array>
+		</dict>
+		<key>term_rule</key>
+		<dict>
+			<key>match</key>
+			<string>[a-z_]\w*([\.-]\w+)*</string>
+			<key>name</key>
+			<string>string</string>
+		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.pdlex</string>
+	<string>source.spellbreak</string>
 	<key>uuid</key>
 	<string>612AA9FB-3247-432A-BFC5-CD568A96F53D</string>
 </dict>

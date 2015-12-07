@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>pdlex-settings</string>
+	<string>spellbreak-settings</string>
 	<key>scope</key>
-	<string>markup.heading.3.pdlex</string>
+	<string>source.spellbreak define</string>
 	<key>settings</key>
 	<dict>
 		<key>showInSymbolList</key>
@@ -16,9 +16,25 @@
 				<string>"</string>
 				<string>"</string>
 			</array>
+			<array>
+				<string>/</string>
+				<string>/</string>
+			</array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
 		</array>
 		<key>symbolTransformation</key>
-		<string>s/%//</string>
+		<string>s/=\s*\[.*//</string>
 	</dict>
 	<key>uuid</key>
 	<string>C9211A8C-3F12-4621-9462-18C5719D5DFA</string>
